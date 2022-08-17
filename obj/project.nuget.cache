@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "t8k/Lwvu+RdlrLCqJ3ribv9Q2ab490+a278dPWXCYgYXCdNmNFHfj1cJke7SGdS1EG445VVVQCQrvhbYevux6Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Aluno\\desktop\\voeairlines-senai\\VoeAirlinesSenai\\VoeAirlinesSenai.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Aluno\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Aluno\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Aluno\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Aluno\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Aluno\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Aluno\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

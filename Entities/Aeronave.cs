@@ -4,7 +4,8 @@ namespace VoeAirlinesSenai.Entities;
 
 // Classe é o conjunto de objetos
 // Objeto é uma instância de uma classe
-public class Aeronave{
+public class Aeronave
+{
     public Aeronave(string fabricante, string codigo, string modelo)
     {
         Fabricante = fabricante;
@@ -12,19 +13,21 @@ public class Aeronave{
         Modelo = modelo;
     }
 
-    public int Id{ get;set; }
-    public string Fabricante { get;set; }
-    public string Codigo { get;set; }
-    public string Modelo { get;set; }
+    public int Id { get; set; }
+    public string Fabricante { get; set; }
+    public string Codigo { get; set; }
+    public string Modelo { get; set; }
+    public ICollection<Manutencao> Manutencoes { get; set; } = null!;
 
-    public ICollection<Manutencao> Manutencoes { get; set; }
+    // public ICollection<Piloto> Pilotos
+    // public ICollection<Voo> Voos { get; set; }=null!;
 
 
 }
 
-    // Properiedades Automáticas
-    // Características do objeto
-    // Automático: gera get e set
-    // Metodo set - atribui
-    // Método get - recupera
-    // POCO - o foco é o objeto
+// Properiedades Automáticas
+// Características do objeto
+// Automático: gera get e set
+// Metodo set - atribui
+// Método get - recupera
+// POCO - o foco é o objeto

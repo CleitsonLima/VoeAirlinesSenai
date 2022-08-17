@@ -4,7 +4,7 @@ using VoeAirlinesSenai.Entities.Enums;
 
 public class Manutencao
 {
-    public Manutencao(DateTime dataHora,TipoManutencao tipo,int aeronaveId, string? observacoes=null)
+    public Manutencao(DateTime dataHora, TipoManutencao tipo, int aeronaveId, string? observacoes = null)
     {
         DataHora = dataHora;
         Observacoes = observacoes;

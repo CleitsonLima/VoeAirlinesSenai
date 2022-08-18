@@ -4,8 +4,21 @@ using VoeAirlinesSenai.Entities;
 
 namespace VoeAirlinesSenai.Contexts;
 
-public class VoeAirLinesContext : DbContext
+public class VoeAirLinesSenaiContext : DbContext
 {
+    private readonly IConfiguration _configuration;
+
+    public VoeAirLinesSenaiContext(IConfiguration configuration)
+    {
+
+        _configuration = configuration;
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(_configuration.GetConnectionString("VoeAirlinesSenai"));
+    }
+
 
     public DbSet<Aeronave> Aeronaves => Set<Aeronave>();
     public DbSet<Manutencao> Manutencoes => Set<Manutencao>();

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using VoeAirlinesSenai.Entities;
-
+using VoeAirlinesSenai.EntityConfigurations;
 
 namespace VoeAirlinesSenai.Contexts;
 
@@ -13,13 +13,6 @@ public class VoeAirLinesSenaiContext : DbContext
 
         _configuration = configuration;
     }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer(_configuration.GetConnectionString("VoeAirlinesSenai"));
-    }
-
-
     public DbSet<Aeronave> Aeronaves => Set<Aeronave>();
     public DbSet<Manutencao> Manutencoes => Set<Manutencao>();
 
@@ -29,5 +22,18 @@ public class VoeAirLinesSenaiContext : DbContext
 
     public DbSet<Cancelamento> Cancelamentos => Set<Cancelamento>();
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(_configuration.GetConnectionString("VoeAirlinesSenai"));
+    }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new AeronaveConfiguration());
+        modelBuilder.ApplyConfiguration(new CancelamentoConfiguration());
+        modelBuilder.ApplyConfiguration(new ManutencaoConfiguration());
+        modelBuilder.ApplyConfiguration(new PilotoConfiguration());
+        modelBuilder.ApplyConfiguration(new VooConfiguration());
+
+    }
 }

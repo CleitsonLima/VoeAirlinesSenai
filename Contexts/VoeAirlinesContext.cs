@@ -22,7 +22,7 @@ public class VoeAirLinesSenaiContext : DbContext
 
     public DbSet<Cancelamento> Cancelamentos => Set<Cancelamento>();
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(_configuration.GetConnectionString("VoeAirlinesSenai"));
     }
@@ -36,4 +36,6 @@ public class VoeAirLinesSenaiContext : DbContext
         modelBuilder.ApplyConfiguration(new VooConfiguration());
 
     }
+
+    
 }

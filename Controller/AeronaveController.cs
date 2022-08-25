@@ -23,4 +23,25 @@ public class AeronaveController : ControllerBase
         return Ok(aeronave);
 
     }
+
+    [HttpPut]
+    public IActionResult AtualizarAeronave(AtualizarAeronaveViewModel dados)
+    {
+        var aeronave = _aeronaveService.AtualizarAeronave(dados);
+        return Ok(aeronave);
+    }
+
+    // [HttpDelete("{id:int}")]
+    // public IActionResult DeletarAeronave(int id)
+    // {
+    //     var aeronave = _aeronaveService.DeletarAeronave(id);
+    //                 if (employeeToDelete == null)
+    //         {
+    //             return NotFound($"Employee with Id = {id} not found");
+    //         }
+
+    //         return  (id);
+    //     // return Ok(aeronave);
+    // }
+
 }

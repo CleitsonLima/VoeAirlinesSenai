@@ -12,36 +12,46 @@ public class AeronaveController : ControllerBase
     private readonly AeronaveService _aeronaveService;
     public AeronaveController(AeronaveService aeronaveService)
     {
-
         _aeronaveService = aeronaveService;
     }
+
     [HttpPost]
     public IActionResult AdicionarAeronave(AdicionarAeronaveViewModel dados)
     {
-
         var aeronave = _aeronaveService.AdicionarAeronave(dados);
         return Ok(aeronave);
-
     }
 
-    [HttpPut]
-    public IActionResult AtualizarAeronave(AtualizarAeronaveViewModel dados)
-    {
+    [HttpPut("{id}")]
+    public IActionResult AtualizarAeronave(int id,AtualizarAeronaveViewModel dados)
+    {   
+        if(id != dados.Id){
+            return BadRequest("O id informado na URL é diferente do id informado no corpo da requisição");
+        }
         var aeronave = _aeronaveService.AtualizarAeronave(dados);
         return Ok(aeronave);
     }
 
-    // [HttpDelete("{id:int}")]
-    // public IActionResult DeletarAeronave(int id)
-    // {
-    //     var aeronave = _aeronaveService.DeletarAeronave(id);
-    //                 if (employeeToDelete == null)
-    //         {
-    //             return NotFound($"Employee with Id = {id} not found");
-    //         }
+    [HttpGet]
+    public IActionResult ListarAeronaves()
+    {
+        return Ok(_aeronaveService.ListarAeronaves());
+    }
 
-    //         return  (id);
-    //     // return Ok(aeronave);
-    // }
-
+    [HttpGet("{id}")]
+    public IActionResult ListarAeronavesPeloId(int id)
+    {
+        var aeronave = _aeronaveService.ListarAeronavePeloId(id);
+        if (aeronave != null)
+        {
+            return Ok(aeronave);
+        }
+        return NotFound();
+    }
+    
+    [HttpDelete("{id}")]
+    public IActionResult DeletarAeronave(int id){
+        _aeronaveService.DeletarAeronave(id);
+        return NoContent();
+    }
 }

@@ -12,7 +12,7 @@ using VoeAirlinesSenai.Contexts;
 namespace VoeAirlinesSenai.Migrations
 {
     [DbContext(typeof(VoeAirLinesSenaiContext))]
-    [Migration("20220822113103_EstruturaInicial")]
+    [Migration("20220829122721_EstruturaInicial")]
     partial class EstruturaInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

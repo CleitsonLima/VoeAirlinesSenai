@@ -17,6 +17,7 @@ builder.Services.AddSwaggerGen(c => {
 builder.Services.AddDbContext<VoeAirLinesSenaiContext>();
 builder.Services.AddTransient<AeronaveService>();
 builder.Services.AddTransient<ManutencaoService>();
+builder.Services.AddTransient<CancelamentoService>();
 
 var app = builder.Build();
 

@@ -23,9 +23,10 @@ public class AeronaveController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult AtualizarAeronave(int id,AtualizarAeronaveViewModel dados)
-    {   
-        if(id != dados.Id){
+    public IActionResult AtualizarAeronave(int id, AtualizarAeronaveViewModel dados)
+    {
+        if (id != dados.Id)
+        {
             return BadRequest("O id informado na URL é diferente do id informado no corpo da requisição");
         }
         var aeronave = _aeronaveService.AtualizarAeronave(dados);
@@ -48,9 +49,10 @@ public class AeronaveController : ControllerBase
         }
         return NotFound();
     }
-    
+
     [HttpDelete("{id}")]
-    public IActionResult DeletarAeronave(int id){
+    public IActionResult DeletarAeronave(int id)
+    {
         _aeronaveService.DeletarAeronave(id);
         return NoContent();
     }

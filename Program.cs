@@ -18,6 +18,9 @@ builder.Services.AddDbContext<VoeAirLinesSenaiContext>();
 builder.Services.AddTransient<AeronaveService>();
 builder.Services.AddTransient<ManutencaoService>();
 builder.Services.AddTransient<CancelamentoService>();
+builder.Services.AddTransient<PilotoService>();
+builder.Services.AddTransient<VooService>();
+
 
 var app = builder.Build();
 

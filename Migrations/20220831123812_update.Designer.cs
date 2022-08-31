@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VoeAirlinesSenai.Contexts;
 
@@ -11,9 +12,10 @@ using VoeAirlinesSenai.Contexts;
 namespace VoeAirlinesSenai.Migrations
 {
     [DbContext(typeof(VoeAirLinesSenaiContext))]
-    partial class VoeAirLinesSenaiContextModelSnapshot : ModelSnapshot
+    [Migration("20220831123812_update")]
+    partial class update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,6 +115,9 @@ namespace VoeAirlinesSenai.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("AeronaveId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Matricula")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -124,6 +129,8 @@ namespace VoeAirlinesSenai.Migrations
                         .HasColumnType("nvarchar(80)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AeronaveId");
 
                     b.HasIndex("Matricula")
                         .IsUnique();
@@ -192,6 +199,13 @@ namespace VoeAirlinesSenai.Migrations
                     b.Navigation("Aeronave");
                 });
 
+            modelBuilder.Entity("VoeAirlinesSenai.Entities.Piloto", b =>
+                {
+                    b.HasOne("VoeAirlinesSenai.Entities.Aeronave", null)
+                        .WithMany("Pilotos")
+                        .HasForeignKey("AeronaveId");
+                });
+
             modelBuilder.Entity("VoeAirlinesSenai.Entities.Voo", b =>
                 {
                     b.HasOne("VoeAirlinesSenai.Entities.Aeronave", "Aeronave")
@@ -214,6 +228,8 @@ namespace VoeAirlinesSenai.Migrations
             modelBuilder.Entity("VoeAirlinesSenai.Entities.Aeronave", b =>
                 {
                     b.Navigation("Manutencoes");
+
+                    b.Navigation("Pilotos");
 
                     b.Navigation("Voos");
                 });

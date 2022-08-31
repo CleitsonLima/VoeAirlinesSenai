@@ -53,7 +53,7 @@ public class PilotoService
         return null;
     }
 
-        public void DeletarPiloto(int id)
+    public void DeletarPiloto(int id)
     {
         var piloto = _context.pilotos.Find(id);
         if (piloto != null)

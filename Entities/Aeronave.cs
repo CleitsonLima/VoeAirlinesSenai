@@ -18,7 +18,6 @@ public class Aeronave
     public string Codigo { get; set; }
     public string Modelo { get; set; }
     public ICollection<Manutencao> Manutencoes { get; set; } = null!;
-    public ICollection<Piloto> Pilotos { get; set; } = null!;
     public ICollection<Voo> Voos { get; set; } = null!;
 
 

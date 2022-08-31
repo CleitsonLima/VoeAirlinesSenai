@@ -17,6 +17,9 @@ public class PilotoConfiguration : IEntityTypeConfiguration<Piloto>
                 .HasMaxLength(10);
         builder.HasIndex(p => p.Matricula)
                 .IsUnique();
+        builder.HasMany(v=>v.Voos)
+                .WithOne(p=> p.Piloto)
+                .HasForeignKey(p=> p.PilotoId);
     }
 
 }

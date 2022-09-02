@@ -86,3 +86,7 @@ C:\Users\Aluno\Desktop\cleitson\VoeAirlinesSenai\obj\Debug\net6.0\refint\VoeAirl
 C:\Users\Aluno\Desktop\cleitson\VoeAirlinesSenai\obj\Debug\net6.0\VoeAirlinesSenai.pdb
 C:\Users\Aluno\Desktop\cleitson\VoeAirlinesSenai\obj\Debug\net6.0\VoeAirlinesSenai.genruntimeconfig.cache
 C:\Users\Aluno\Desktop\cleitson\VoeAirlinesSenai\obj\Debug\net6.0\ref\VoeAirlinesSenai.dll
+C:\Users\Aluno\Desktop\cleitson\VoeAirlinesSenai\bin\Debug\net6.0\DinkToPdf.dll
+C:\Users\Aluno\Desktop\cleitson\VoeAirlinesSenai\bin\Debug\net6.0\libwkhtmltox.dll
+C:\Users\Aluno\Desktop\cleitson\VoeAirlinesSenai\bin\Debug\net6.0\libwkhtmltox.dylib
+C:\Users\Aluno\Desktop\cleitson\VoeAirlinesSenai\bin\Debug\net6.0\libwkhtmltox.so

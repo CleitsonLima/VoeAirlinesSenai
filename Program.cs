@@ -1,5 +1,7 @@
 using VoeAirlinesSenai.Contexts;
 using VoeAirlinesSenai.Services;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +23,7 @@ builder.Services.AddTransient<CancelamentoService>();
 builder.Services.AddTransient<PilotoService>();
 builder.Services.AddTransient<VooService>();
 
-
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

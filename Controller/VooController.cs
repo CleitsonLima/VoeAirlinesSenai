@@ -56,4 +56,16 @@ public class VooController : ControllerBase
         _vooService.DeletarVoo(id);
         return NoContent();
     }
+
+    [HttpGet("{id}/ficha")]
+    public IActionResult GerarFichaDoVoo(int id)
+    {
+        var conteudo = _vooService.GerarFichaDoVoo(id);
+
+
+        if (conteudo != null)
+            return File(conteudo, "application/pdf", "relatorio.pdf");
+
+        return NotFound();
+    }
 }

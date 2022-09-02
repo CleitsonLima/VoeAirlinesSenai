@@ -1,16 +1,26 @@
+using DinkToPdf;
+using DinkToPdf.Contracts;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
 using VoeAirlinesSenai.Contexts;
 using VoeAirlinesSenai.Entities;
 using VoeAirlinesSenai.ViewModels;
 
 namespace VoeAirlinesSenai.Services;
 
+
+
 public class VooService
 {
     private readonly VoeAirLinesSenaiContext _context;
+    private readonly IConverter _converter;
+    private readonly IHostEnvironment _hostEnvironment;
 
-    public VooService(VoeAirLinesSenaiContext context)
+    public VooService(VoeAirLinesSenaiContext context, IConverter converter, IHostEnvironment hostEnvironment)
     {
         _context = context;
+        _converter = converter;
+        this._hostEnvironment = hostEnvironment;
     }
 
     public DetalhesVooViewModel AdicionarVoo(AdicionarVooViewModel dados)
@@ -63,5 +73,55 @@ public class VooService
             _context.Remove(voo);
             _context.SaveChanges();
         }
+    }
+
+    public byte[]? GerarFichaDoVoo(int id)
+    {
+        var voo = _context.Voos.Include(v => v.Aeronave)
+                           .Include(v => v.Piloto)
+                           .Include(v => v.Cancelamento)
+                           .FirstOrDefault(v => v.Id == id);
+
+        var path = _hostEnvironment.ContentRootPath + "\\banner-voeairlines.png";
+        if (voo != null)
+        {
+            var builder = new StringBuilder();
+
+            builder.Append($"<img src='{path}' width= '1000'/>")
+            .Append($"<h1 style='text-align: center'>Ficha do Voo {voo.Id.ToString().PadLeft(10, '0')}</h1>")                   
+            .Append($"<hr>")
+            .Append($"<p><b>ORIGEM:</b> {voo.Origem} (saída em {voo.DataHoraPartida:dd/MM/yyyy} às {voo.DataHoraPartida:hh:mm})</p>")
+            .Append($"<p><b>DESTINO:</b> {voo.Destino} (chegada em {voo.DataHoraChegada:dd/MM/yyyy} às {voo.DataHoraChegada:hh:mm})</p>")
+            .Append($"<hr>")
+            .Append($"<p><b>AERONAVE:</b> {voo.Aeronave!.Codigo} ({voo.Aeronave.Fabricante} {voo.Aeronave.Modelo})</p>")
+            .Append($"<hr>")
+            .Append($"<p><b>PILOTO:</b> {voo.Piloto!.Nome} ({voo.Piloto.Matricula})</p>")
+            .Append($"<hr>");
+            if (voo.Cancelamento != null)
+            {
+                builder.Append($"<p style='color: red'><b>VOO CANCELADO:</b> {voo.Cancelamento.Motivo}</p>");
+            }
+
+            var doc = new HtmlToPdfDocument()
+            {
+                GlobalSettings = {
+                    ColorMode = ColorMode.Color,
+                    Orientation = Orientation.Portrait,
+                    PaperSize = PaperKind.A4
+                },
+                Objects = {
+                    new ObjectSettings() {
+                        PagesCount = true,
+                        HtmlContent = builder.ToString(),
+                        WebSettings = { DefaultEncoding = "utf-8" }
+
+                    }
+                }
+            };
+
+            return _converter.Convert(doc);
+        }
+
+        return null;
     }
 }
